@@ -78,3 +78,35 @@ Hydra is already optimised for adding, updating and removing pages, staff, advic
 
 * Exposed as a data file to give clients better access.
 * Set in the *Data* / *Footer* section.
+
+
+---
+
+## Development Notes (Windows / Ruby 3.4)
+**Added:** 2026-02-01 by Earl Lamier
+
+While setting up Jekyll locally on Windows with Ruby 3.4, a few compatibility
+adjustments were required due to changes in Ruby’s standard library and
+dependency handling.
+
+### Added
+The following gems were added to the `Gemfile` to ensure Jekyll runs correctly
+on Ruby 3.4 (Windows):
+
+- `csv`
+- `base64`
+- `bigdecimal`
+- `tzinfo`
+- `tzinfo-data` (Windows only)
+- `webrick`
+
+### Removed
+To prevent build conflicts caused by duplicate output paths:
+
+- Removed `index.markdown` (kept `index.html`)
+- Removed `about.html` (kept `about.markdown`)
+
+### Result
+- Jekyll builds and serves locally without errors
+- Configuration is explicit and stable on Windows
+- No impact on GitHub Pages deployment
